@@ -21,7 +21,7 @@ const socketHandler = (server) => {
         // Allow requests with no origin (like mobile apps or Postman)
         if (!origin) return callback(null, true);
         
-        if (allowedOrigins.includes(origin)) {
+        if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app') || origin.endsWith('.netlify.app')) {
           callback(null, true);
         } else {
           console.log("Socket CORS Blocked:", origin);
